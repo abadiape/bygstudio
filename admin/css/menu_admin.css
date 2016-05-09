@@ -1,0 +1,175 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/10/2015, 11:30:53 AM
+    Author     : Pedro Rafael Abadía
+*/
+@import url(https://fonts.googleapis.com/css?family=Oxygen+Mono);
+/* Starter CSS for Menu */
+#navmenu {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  position: absolute;
+  width: auto;
+  float:right;
+  top:8.0em;
+  right:2em;
+}
+#navmenu ul,
+#navmenu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#navmenu ul {
+  position: relative;
+  z-index: 597;
+}
+#navmenu ul li {
+  float: left;
+  min-height: 1px;
+  vertical-align: middle;
+}
+#navmenu ul li.hover,
+#navmenu ul li:hover {
+  position: relative;
+  z-index: 599;
+  cursor: default;
+}
+#navmenu ul ul {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 598;
+  width: 100%;
+}
+#navmenu ul ul li {
+  float: none;
+}
+#navmenu ul ul ul {
+  top: 0;
+  left: 190px;
+  width: 190px;
+}
+#navmenu ul li:hover > ul {
+  visibility: visible;
+}
+#navmenu ul ul {
+  bottom: 0;
+  left: 0;
+}
+#navmenu ul ul {
+  margin-top: 0;
+}
+#navmenu ul ul li {
+  font-weight: bold;
+}
+#navmenu a {
+  display: block;
+  line-height: 1em;
+  text-decoration: none;
+}
+/* Custom CSS Styles */
+#navmenu {
+  background: #333333;
+  font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
+  font-size: 0.8125em;
+  font-weight: bold;
+}
+#navmenu > ul {
+  *display: inline-block;
+}
+#navmenu:after,
+#navmenu ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+#navmenu ul {
+  text-transform: uppercase;
+}
+#navmenu ul ul {
+  text-transform: none;
+  min-width: 190px;
+}
+#navmenu ul ul a {
+  background: #000000;
+  color: #929292;
+  border-top: 0 none;
+  line-height: 150%;
+  padding: 8px 20px;
+  font-size: 1.0em;
+}
+#navmenu ul ul ul {
+  border-top: 0 none;
+}
+#navmenu ul ul li {
+  position: relative;
+}
+#navmenu ul ul li:first-child > a {
+  border-top: 1px solid #92292;
+}
+#navmenu ul ul li:hover > a {
+  color: #c6d73d;
+}
+#navmenu ul ul li:last-child > a {
+  -moz-border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+#navmenu ul ul li:last-child:hover > a {
+  -moz-border-radius: 0 0 0 3px;
+  -webkit-border-radius: 0 0 0 3px;
+  border-radius: 0 0 0 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+#navmenu ul ul li.has-sub > a:after {
+  content: '=>';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -8px;
+}
+#navmenu ul li:hover > a,
+#navmenu ul li.active > a {
+  background: #000000;
+  color: #c6d73d;
+}
+#navmenu ul li.has-sub > a:after {
+  margin-left: 5px;
+}
+#navmenu ul li.last ul {
+  left: auto;
+  right: 0;
+}
+#navmenu ul li.last ul ul {
+  left: auto;
+  right: 99.5%;
+}
+#navmenu a {
+  background: #000000;
+  color: #929292;
+  padding: 0 13px;
+}
+#navmenu > ul > li > a {
+  line-height: 48px;
+  font-size: 1.0em;
+}
+#navmenu .search input {
+    border-radius:0.5em;
+}
+#navmenu .search input:hover {
+    color: #ffffff;
+    border: 2px solid #c6d73d;
+}
+

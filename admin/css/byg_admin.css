@@ -1,0 +1,492 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*Posicionamiento y características base página web*/
+body 
+{/*Coloca el fondo negro para toda la página*/ 
+  background: #000;
+}
+#byglogo {
+  position: relative; 
+  left:0.8125em;
+  top:0.3125em;
+  padding: 0px;
+  margin-bottom:1.3125em;
+  }
+#byglines {
+  margin:0px;
+  padding-bottom:0.5em;
+  background-image: url('https://bygstudio.com/admin/images/lines.svg');
+  background-repeat:repeat-x;
+  position:absolute;
+  top:5.375em;
+  left:12em;
+  width:85%;
+  }
+#bygcubes {
+  position: fixed; 
+  right:1.0em;
+  bottom:2.125em;
+  }
+strong 
+{/*Línea del pie de página*/
+    position:fixed;
+    bottom: 0px;
+    left: 0px;
+    height:0.8125em;
+    width: 100%;
+    color:#929292;
+    font-weight:bold;
+    background:#c6d73d;
+    text-align: center;
+    border:solid #C6D73D 2px;
+    z-index: -1;
+}
+/*-------------End base página web--------------------------------*/
+/*Posiciona los ítems del menú y le da sus características a este*/
+#menu 
+{
+    position:relative; 
+    margin:0;
+    padding:0;
+    display:inline-table;
+    float:right;
+}
+#menu:after 
+{
+    content:""; clear: both; display: block;
+}
+#menu li { 
+    float:right;
+    margin-top:3.125em;
+    margin-right:2.0em;
+    height:55px;
+}
+#menu li a { 
+    color:#929292;
+    font-family: Verdana, Helvetica, sans-serif; 
+    font-style: oblique;
+    font-size:1.3125em;
+    text-decoration:none;
+    display:block; 
+    padding:0;
+}
+#menu li a:hover { 
+    color:#c6d73d;
+    text-decoration: underline;
+}
+#menu ul
+{/*Oculta el campo de sub-menú bajo el ítem de primer nivel*/
+    display:none;
+    position:absolute; 
+    top:45px;
+}
+#menu ul li 
+{
+    float:left; 
+    position:relative;
+    padding:0px;
+    height:55px;
+}
+#menu ul li a 
+{
+    width:55px;
+    display:block;
+    height:89px;
+}
+#menu ul ul 
+{
+    position:absolute; 
+    left:25%; 
+    top:-45%;
+    display:none;
+    height:55px;
+}
+#menu li:hover ul
+{/*Reaparece el campo al posarse sobre el ítem del listado*/
+    display:inline-table;
+}
+#menu li:hover ul ul
+{/*Desaparece el segundo nivel de sub-menú al posarse sobre el ítem del listado*/
+    display:none;
+}
+#menu ul li:hover ul
+{/*Aparece el sub-menú al posarse sobre el ítem de lista de 2o nivel*/
+    display:inline-table;
+    padding:0px;
+    margin:0px;
+}
+#menu ul ul li a
+{
+    font-size:1.0em;
+    padding:0;
+}
+/*-------------End menú template handling--------------------------------*/
+textarea {background:none;
+    border: solid 1px #929292;
+}
+/*Página principal (listado de clientes) posicionamiento y características*/
+#title {margin-left:1.0em;}
+#title th {color:#929292;font-weight:bold;
+font-size:2.125em; width: auto;}
+#title td a {text-decoration: none;}
+.list
+{
+    position:relative;left:1.0em;margin-top:2%;
+}
+.list ul
+{
+    position:inherit;
+}
+.list ul li a {
+    color:#929292; 
+    font-family: Verdana, Helvetica, sans-serif; 
+    font-size:1.325em;
+    text-decoration: none;
+    display:block;
+    width:auto;
+}
+.list ul li a:hover {
+    color:#C6D73D; 
+    text-decoration: underline;
+}
+.list ul li:hover a {
+    color:#C6D73D; 
+    text-decoration: underline;
+}
+.list ul ul {
+    display:none;
+} 
+.list ul li:hover > ul 
+{ 
+    display: block;position:absolute;left:13.0em;
+} 
+.list ul li:hover td a,.list ul li:hover th a {
+    color:#929292; 
+    text-decoration: none;
+}
+.list ul li td a:hover,.list ul li th a:hover {
+    color:#c6d73d; 
+}
+.list ul ul td a, .list ul ul th a
+{
+    font-size:1.0em;
+}
+.list ul ul th {color:#FFFFFF;font-weight:bold;}
+.list ul ul td a:hover, .list ul ul th a:hover
+{
+    text-decoration:underline;
+}
+.main {height:auto;width:800px;}
+.bloqueder {float:left;margin-left:2%;border-radius: 8px;
+width: 45%;height: inherit;background:#484848;overflow:auto;}
+.bloqueizq {float:left;margin-left:2%;border-radius: 8px;
+width: 45%;height: inherit;background:#484848;}
+.data,.contactline,.contitle {position:relative;left:2%;
+}
+table.contactline {table-layout:fixed;}
+.data th {
+padding-top:0.3125em;
+text-align:left;
+}
+.data td {
+    padding: 0;color:#000000;
+    font-family: Verdana, Helvetica, sans-serif; 
+    font-size:1.0em;
+    white-space:normal;	
+} 
+
+.data span {
+    padding: 0;color:#000000;
+    font-family: Verdana, Helvetica, sans-serif; 
+    font-size:1.0em;
+    white-space:normal;	
+}
+
+.crearver td
+{
+    padding: 0 0 0.3125em 0.3125em;
+    font-family: Verdana, Helvetica, sans-serif; 
+    font-size:1.125em;
+}
+.crearver td a:hover {
+    color:#C6D73D;	
+}
+.contitle {
+    margin:0.625em 0.625em 0.625em 0;	
+}
+.contactline,.contitle {width:97%;}
+.contactline th {
+    padding: 0.15625em;color:#FFFFFF;text-align:left;	
+}
+.contactline td {
+    padding: 0.15625em;text-align:right;	
+}
+.contitle td {text-align:right;}
+.contitle th {font-size:1.325em;text-align:left;}
+#datacontact li, #dataclient li {padding: 0.3125em 0;}
+#datacontact li label {margin: 0 0.3125em;}
+#datacontact li input, #dataclient li input {font-size: 0.8125em;}
+/*-------------End handling página ppal--------------------------------*/
+/*Posicionamiento y características del listado de proyectos*/
+span {
+    margin-left:1%;	
+}
+nav
+{
+    position:relative;left:1%;
+    margin-top:1.325em;
+}
+/*nav ul:after 
+{
+    content: ""; clear: both; display: block;
+}
+nav ul ul {
+    display: none;
+}
+nav ul li 
+{
+    font-family: Verdana, Helvetica, sans-serif; 
+    font-size:1.125em;
+}
+nav ul li:hover > ul 
+{
+    display:inline-table;
+}
+nav ul ul li 
+{
+    font-size:0.825em;
+}*/
+.proyecto ul ul {display:none;/*position: relative;left:34%;top:0%;*/}
+/*.proyecto ul li:hover > ul {display: block;}
+.proyecto ul {list-style:none; display: list-item;}
+.proyecto ul:after*/
+.proyecto ul li li {font-size:1.125em;}
+/*.proyecto ul ul li a {color:#929292}
+.proyecto ul ul li:hover a {color:#c6d73d;}
+.proyecto ul ul li a:hover {color:#929292;}
+.proyecto ul ul ul {position: relative;left: 21%;top:0%;}
+.proyecto ul li:hover li a {color: #929292;}
+.proyecto ul li li a:hover {color: #c6d73d;}
+.proyecto ul li li:hover a {color: #c6d73d;}
+.proyecto ul li li:hover li a {color: #929292;}
+.proyecto ul li li li a:hover {color: #c6d73d;}*/
+.proyecto .wrapper {
+    height: 377px;
+    }
+.proyecto .wrapper li {
+    margin: 0;
+    padding: 3px;
+    }
+.proyecto .tse-content {
+  background-image: url("https://bygstudio.com/admin/images/BYGSTUDIOMATTE.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: #111;
+}
+.proyecto li.dropdown.open > button
+{
+   background-color: #c6d73d !important; 
+   border-color: #929292;
+}
+.proyecto li.dropdown button:focus
+{
+  background-color: #c6d73d !important; 
+}
+.proyecto li.dropdown.open > a, 
+.proyecto li.dropdown.open > ul.dropdown-menu a:hover
+{
+  background-color: #c6d73d;
+  border-color: #929292;
+  color: #929292;
+}
+.proyecto li .btn {
+  border: solid 1px #929292;
+  color: #929292;
+  background-color: #111;
+  font-size:1.3125em;
+}
+.proyecto li .btn:hover {
+    background: #222;
+}
+/*-------------End listado proyectos--------------------------------*/
+/*Posicionamiento y características menú para crear nuevo cliente*/
+#container {position:relative;left:1.0em;}
+.container {position:relative;left:0.3125em;}
+#container p, .container p {color: #929292;}
+#dataclient, #datacontact {
+float:left;margin-right:0.5em;position:relative;height:inherit;			
+background: #484848; border-radius:0.8125em; padding:0.3125em; border:solid 0.125em #c6d73d;
+}
+#dataclient h5, #datacontact h5 {
+color:#FFFFFF;font-size:1.3125em;font-weight:bold;
+}
+#datacontact ul li, #dataclient ul li {
+color:#929292;font-size:1.3125em;
+}
+#datacontact ul li input, #dataclient ul li input {
+float:right;
+}
+/*-------------End menú crear cliente--------------------------------*/
+/*Posicionamiento y características menú login*/
+#loginbox {position:relative;left:21%;margin-top:10em;}
+#sesion td {padding:0.15625em;}
+#sesion th {text-align:left;}
+#sesion th a {
+text-decoration: none; color: #c6d73d;font-size:1.325em;
+}
+#user a .itemhelp, #pwd a .itemhelp  { display: none;border:solid #C6D73D 2px; 
+border-radius:8px;padding:3px; background:#000000;font-size: 0.825em;}
+#user a:hover > .itemhelp, #pwd a:hover > .itemhelp {display:inline-block;position: absolute;left:21%;color:#FFFFFF;text-shadow: 0px 0px;}
+input {text-align:left;color:#929292;background:#000000;border:solid #929292 2px;border-radius:0.5em}
+/*-------------End menú login--------------------------------*/
+/*Posicionamiento y características resultado búsqueda versiones*/
+#reqanswer {margin-left:1.0em;}
+#reqanswer td {color:#929292;}
+#reqanswer td a {color:#929292;}
+//.row:hover {background-color:#c6d73d;}
+.row:hover > td span.tooltip {display:block;}
+.crear:hover > span.tooltip {display:block;top:0em;width: 9.0em;font-size: 1.0em;}
+.infopro:hover > span.tooltip {display:block;top:-5.0em;width: 14.5625em;font-size: 0.8125em;}
+.infoedit:hover > span.tooltip {display:block;top:-4.0em;width: 14.5625em;font-size:1.0em;}
+#reqanswer tr:hover {color:#c6d73d;}
+#reqanswer th {font-family: Verdana, Helvetica, sans-serif;
+font-size:1.325em;color:#c6d73d;padding: 0 0.825em 1.0em 0;text-align:center;}
+#reqanswer th p {font-size:0.65em}
+#reqanswer td {padding: 0 0 0.825em 0;position:relative;}
+#reqanswer .size {text-align:center;}
+span.tooltip {
+      position: absolute;
+      width: 480px;
+      height: 20px;
+      line-height: 14px;
+      padding: 10px;
+      font-size: 15px;
+      text-align: left;
+      color: rgb(255, 255, 255);
+      background: rgb(198, 215, 61);
+      border: 4px solid rgb(198, 215, 61);
+      border-radius: 5px;
+      text-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 1px;
+      box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 0px;
+      display:none;
+      top:-3.4375em;
+      white-space: pre-line;
+}
+
+span.tooltip:before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-width: 10px;
+      border-style: solid;
+      border-color: #c6d73d transparent transparent transparent;
+      top: 44px;
+      left: 50px;
+      }
+/*-------------End resultado búsqueda versiones--------------------------------*/
+/*Posicionamiento y características menú para crear nuevo proyecto o enviar e-mail*/
+#contenido {margin-left:1.0em;}
+#contenido th,.mail th
+{text-align:left;color:#FFFFFF;font-size:1.0em;font-weight:bold;}
+#contenido p {color:#929292; font-weight: bold;}
+#contenido .note {font-size:0.8125em;font-weight:normal;}
+.mail td {padding:0.3125em;}
+.mail th {vertical-align:top;}
+/*-------------End menú agregar proyecto--------------------------------*/
+h1 {
+  color:#FFFFFF;font-size:2.125em;
+}
+h2 {color:#FFFFFF;} 
+h3:hover {color:#C6D73D;}
+h3 {color:#929292;}
+h5 {color:#FFFFFF;}
+p {
+  text-align:justify;
+  color:#C6D73D;
+  margin-left:5px;
+  font:1.0em Verdana;
+}
+p em {
+	font: bold 1.0em Verdana;
+}
+td {text-align:left;color:#c6d73d;font-weight:bold;
+width:auto;white-space:nowrap;}
+td h1:hover {color:#C6D73D;}
+th a {color:#c6d73d;font-weight:bold;
+font-size:0.825em; width: auto;}
+/*Versión de video posicionamiento y características*/
+#version {margin-left:1%;}
+#version .vercom th {text-align:center;color:#000000;font:bold 0.825em Verdana;vertical-align: top;}
+#version .vercom td {vertical-align: top;}
+#version ul li {display:inline-table;margin:0 0.825em 0.825em 0}
+#version .vercom {background:#484848;border-radius:0.8125em;border:solid 0.125em #c6d73d;
+border-collapse:separate;}
+#version .vercom a {color:#929292;text-decoration: none;}
+#version .vercom a:hover {color:#c6d73d;}
+#version .vercom td {text-align:right;}
+#version .vercom input {margin-bottom:0.5em;margin-right:0.5em;}
+#version .vercom td textarea {border:solid 0.125em #000000;}
+#version h1, #list h1 {
+color:#929292;font-weight:bold;
+font-size:2.125em;
+  }
+#version h5 {
+color:#929292;
+font-size:1.325em;
+  }
+video {
+  max-width: 480px;
+  /* just in case, to force correct aspect ratio */
+  height: auto;
+}
+#version .vercom textarea 
+{
+background:#484848;
+border:solid 1px #484848;
+}

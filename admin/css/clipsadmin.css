@@ -1,0 +1,162 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/03/2016, 08:45:25 AM
+    Author     : Pedro Rafael Abadía
+*/
+#clipspace {
+    margin-left: 1.0em;
+}
+
+#list_title th.clips-admin, #list_title th.clips-admin-title, #clipspace p, .category-show span, #clipspace th.category-label {
+    color: #929292;
+}
+
+#list_title th.clips-admin.active, #list_title th.clips-admin-title.active, .category-show span.active, #clipspace th.category-label.active {
+    color: #FFF;
+}
+
+.clips-admin {
+   border-bottom: solid #c6d73d 1px; 
+}
+
+.clips-admin.active {
+   border-bottom: none;
+}
+
+.clips-admin th.category-label {
+    font-weight: bold;
+    font-size: 1.3125em;
+    color: #FFF;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    padding-right: 1.5em;
+}
+
+.clips-admin th.category-show {
+    color: #FFF;
+    padding-right: 2.5em;
+}
+
+.clips-admin th.clip-category-visible {
+    font-size: 1.125em;
+    color: #929292; 
+    padding-bottom: 0.8125em;
+    padding-right: 6.125em;
+}
+
+.clips-admin th.clip-category-position {
+    font-size: 1.125em;
+    color: #929292; 
+    padding-bottom: 0.8125em;
+    padding-right: 3.825em;
+}
+
+.clips-admin th.clip-category-name {
+    padding-right: 2.125em;
+}
+
+.clips-admin th.clip-category-name input {
+    font-weight: bold;
+    font-size: 1.125em;
+    color: #000;
+    background-color: #FFF;
+    border-radius: 1px;
+    width: 144px;
+}
+
+.clips-admin th.clip-category-add {
+    display: none;
+}
+
+.clips-admin th.clip-category-add.active {
+    display: block;
+}
+
+.clips-admin th.clip-category-add input {
+    font-weight: bold;
+    font-size: 1.125em;
+    color: #929292;
+    background-color: #000;
+    padding: 0.3125em;
+}
+
+div.add-category {
+    border-bottom: #c6d73d solid 1px;
+}
+
+div.add-category input {
+   font-weight: bold;
+   font-size: 1.125em;
+   padding: 0.3125em;
+   border: #fff solid 2px;
+   margin-bottom: 1.0em;
+}
+
+.clips, .clips-upload {
+    display: none;
+}
+
+.clips.active {
+    display: table;
+}
+
+.clips-upload.active {
+    display: block;
+}
+
+.clips-upload.active form {
+    border: solid #c6d73d 1px;
+    margin-bottom: 1.0em;
+    margin-top: 1.0em;
+    margin-right: 21.0em;
+}
+
+.clips th.clip-title input {
+    font-weight: bold;
+    font-size: 1.125em;
+    color: #929292;
+    background-color: #FFF;
+    padding: 0.3125em;
+    border-radius: 1px;
+    width: 144px;
+    margin-bottom: 0.5em;
+    margin-right: 2.0em;
+}
+
+.clips td.clip-visible label, .clips td.clip-banner label {
+    margin-top: 0.5em;
+    color: #929292;
+}
+
+.clips td.clip-change_image {
+    border-bottom: solid #c6d73d 1px;
+}
+
+.clips td.clip-change_image input {
+    margin-top: 0.5em;
+    margin-bottom: 1.0em;
+}
+
+.clips .clip-image-container {
+    position: relative;
+}
+
+.clips td button {
+    font-size: 1.0em;
+    border: solid #929292 1px;
+    border-radius: 1.0em;
+    color: #929292;
+    background-color: #000;
+    position: absolute;
+    top: -8%;
+}
+
+.not-visible {
+    opacity: 0.3;
+}
+
+
