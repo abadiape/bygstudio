@@ -1,4 +1,3 @@
-# bygstudio
 #Bygstudio customers (producers) projects handling (admin page).
 #Requires user and password to be accessed exclusively via htpps.
 #Customers can be added, edited and deleted.
