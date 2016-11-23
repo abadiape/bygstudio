@@ -1,10 +1,17 @@
 <div id="clips-upload_<?php echo $key ?>" class="clips-upload active">
-    <p>Arrastre el VIDEO del nuevo clip y la respectiva FOTO; en cualquier orden, hacia el espacio debajo, para subirlos.</p>
+    <?php if (isset($text)): ?>
+        <?php echo $text; ?>
+    <?php else: ?>
+        <p>Arrastre el VIDEO del nuevo clip y la respectiva FOTO; en cualquier orden, hacia el espacio debajo, para subirlos.</p>
+    <?php endif; ?>
     <?php
         $attributes = array('class' => 'dropzone', 'id' => 'dropzone-' . $key);
         echo form_open_multipart(site_url('uploadclip'),$attributes); 
     ?>
         <input id="tipo-<?php echo $key ?>" type="hidden" value="<?=$key;?>" name="type-<?php echo $key ?>"/>
+    <?php  if (isset($order)):  ?>
+        <input type="hidden" value="<?=$order;?>" name="listorder"/>
+    <?php endif; ?>
         <input id="filename" type="hidden" name="filename"/>
     </form>
     <script>
@@ -21,19 +28,37 @@
                     pos = fname.substr(pos+1); 
                     if (window.XMLHttpRequest)
                         request = new XMLHttpRequest();	
-                    function done()
+                    function showNewClip()
                     {
                         if (request.readyState == 4 && request.status == 200)
                         {	
-                            if (ftype.substr(0,5) !== "image")
+                            var uploadAnswer = request.responseText;
+                            if (ftype.substr(0, 5) !== "image")
                             {    
-                                window.alert(request.responseText);
+                                window.alert(uploadAnswer);
+                            }
+                            else
+                            {                                                                
+                                if (uploadAnswer.indexOf("El nuevo clip") !== -1)
+                                {
+                                    var paragraphPos = uploadAnswer.indexOf("<p");
+                                    uploadAnswer = uploadAnswer.substring(0, paragraphPos);
+                                }
+                                $(".clips.active").remove();
+                                $(uploadAnswer).insertAfter("div.clips-upload.active");
+                            } 
+                            if (uploadAnswer.indexOf("El nuevo clip") !== -1)
+                            {
+                                myDropzone.removeAllFiles();
+                                var newUploadSpace = "<div id='upload_space_<?php echo $key ?>'></div>";
+                                $("#clips-upload_<?php echo $key ?>").replaceWith(newUploadSpace); 
+                                $(".clip-category-add.active > input").trigger("click");
                             }
                         }
                     };
 
                     request.open("GET","/admin/index.php/uploadclip?tipo="+document.getElementById("tipo-<?php echo $key ?>").value+"&ftype="+ftype,true);
-                    request.onreadystatechange = done;
+                    request.onreadystatechange = showNewClip;
                     request.send(null);			
                 } );
                 this.on("addedfile", function(file) { 

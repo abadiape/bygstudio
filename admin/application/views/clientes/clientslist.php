@@ -249,7 +249,7 @@
                         echo '<th class="clip-title ' . $key . '">';
                 else echo '<th class="clip-title ' . $key . '">';     
             ?>
-        <input id="<?php echo 'title_' . $key . $nameNumber ?>" type="text" maxlength="24" value="<?php echo ucwords($name); ?>">
+        <input id="<?php echo 'title_' . $key . '-' . $nameNumber ?>" type="text" maxlength="24" value="<?php echo ucwords($name); ?>">
             </th>
         <?php endforeach; ?>
         </tr>
@@ -263,18 +263,18 @@
                 {
                     $imgClass = 'not-visible';
                 }
-                echo '<img id="img_' . $key . $imageNumber.'" src="https://bygstudio.com/' . $tipo . $image.'" 
+                echo '<img id="img_' . $key . '-' . $imageNumber.'" src="https://bygstudio.com/' . $tipo . $image.'" 
                 draggable="true" width="144" height="89" class="' . $imgClass . '">';
             ?>
                 </img>
-                <button type="button" id="<?php echo 'delete_' . $key . $imageNumber ?>"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" id="<?php echo 'delete_' . $key . '-' . $imageNumber ?>"><span class="glyphicon glyphicon-remove"></span></button>
             </td>
         <?php endforeach; ?>
         </tr>
         <tr>
         <?php foreach ($clipsVisibility[$key] as $clipVisibility => $clip_visibility): ?>
             <td class="clip-visible <?php echo $key ?>"> 
-                <input type="checkbox" id="<?php echo 'visibility_' . $key . $clipVisibility ?>" <?php if ($clip_visibility && $categoriesVisibility[$key] === '1') {echo ' checked=checked';} elseif ($categoriesVisibility[$key] === '0') {echo ' disabled=disabled';} ?>><label>&nbsp;Visible en página</label>             
+                <input type="checkbox" id="<?php echo 'visibility_' . $key . '-' . $clipVisibility ?>" <?php if ($clip_visibility && $categoriesVisibility[$key] === '1') {echo ' checked=checked';} elseif ($categoriesVisibility[$key] === '0') {echo ' disabled=disabled';} ?>><label>&nbsp;Visible en página</label>             
             </td>
         <?php endforeach; ?>
         </tr>
@@ -282,14 +282,14 @@
         <?php foreach ($clipsInBanner[$key] as $clipInBanner => $clip_inbanner): ?>
             <?php $imgVisible = $clipsVisibility[$key][$clipInBanner]; ?>
             <td class="clip-banner <?php echo $key ?>"> 
-                <input type="checkbox" id="<?php echo 'banner_' . $key . $clipInBanner ?>" <?php if ($clip_inbanner && $imgVisible && $categoriesVisibility[$key] === '1') {echo ' checked=checked';} elseif (! $imgVisible  || $categoriesVisibility[$key] === '0') {echo ' disabled=disabled';} ?>><label>&nbsp;Banner principal</label>             
+                <input type="checkbox" id="<?php echo 'banner_' . $key . '-' . $clipInBanner ?>" <?php if ($clip_inbanner && $imgVisible && $categoriesVisibility[$key] === '1') {echo ' checked=checked';} elseif (! $imgVisible  || $categoriesVisibility[$key] === '0') {echo ' disabled=disabled';} ?>><label>&nbsp;Banner principal</label>             
             </td>
         <?php endforeach; ?>
         </tr>
         <tr>
         <?php foreach ($clipsImages[$key] as $imageNumber => $image): ?>
             <td class="clip-change_image <?php echo $key ?>"> 
-                <input type="button" id="<?php echo 'upload-img_' . $key . $imageNumber ?>" value="Cambiar imagen">             
+                <input type="button" id="<?php echo 'upload-img_' . $key . '-' . $imageNumber ?>" value="Cambiar imagen">             
             </td>
         <?php endforeach; ?>
         </tr>
