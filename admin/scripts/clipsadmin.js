@@ -1,4 +1,4 @@
-//<---jQuery code snippets for clips administration.-->
+//<---Code snippets for clips administration.-->
 $(document).ready(function() { 
     $('.clips-admin-title').on('click', function(){
         $('.producers').toggle();
@@ -10,169 +10,7 @@ $(document).ready(function() {
         $('.clips-admin-title').toggleClass('active');
         $('#list_title th.clips-admin-title.active').attr('title', 'Puede reordenar clips arrastrándolos al nuevo lugar, y allí se verán en la página.');
     });
-
-    $('td.clip-visible').on('click', 'input', function() {
-        var checkbox_id = $(this).attr('id');
-        var suffixPos = checkbox_id.indexOf('_');
-        var suffix = checkbox_id.substr(suffixPos);
-        $('#img'+suffix).toggleClass('not-visible');
-        if ($('#img'+suffix).hasClass('not-visible'))
-        {
-            $('#banner'+suffix).attr('disabled', true);
-            $('#banner'+suffix).attr('checked', false);
-            $(this).attr('checked', false);
-        }
-        else
-        {
-            $('#banner'+suffix).attr('disabled', false);
-            $(this).attr('checked', true);
-        }
-        var request = new XMLHttpRequest();
-        function clipFeatureUpdate()
-        {
-            if (request.readyState === 4 && request.status === 200)
-            {
-                if (request.responseText)
-                {    
-                    var response = request.responseText;
-                }
-                else 
-                {
-                    window.alert("El clip '" + $('#title'+suffix).val() + "' No pudo actualizarse!!");
-                }
-            }
-        }
-        request.open("GET","/admin/index.php/setClipFeature?checkbox_id="+checkbox_id,true);
-        request.onreadystatechange = clipFeatureUpdate;
-        request.send(null);                    
-    });
-
-    $('td.clip-image').on('click', 'button', function() {
-        var delete_id = $(this).attr('id');
-        var underscorePos = delete_id.indexOf('_');
-        var suffix = delete_id.substr(underscorePos);
-        var videoname_id = '#title' + suffix;
-        var video_name = $(videoname_id).val();
-        var del_confirm = window.confirm("¿Está seguro de borrar el video "+ video_name + " ?");
-        if (del_confirm)
-        {
-           $(videoname_id).parent().remove();
-           $('#img'+suffix).parent().remove();
-           $('#delete'+suffix).parent().remove();
-           $('#visible'+suffix).parent().remove();
-           $('#banner'+suffix).parent().remove();
-           $('#upload'+suffix).parent().remove();
-           //window.alert("El video " + video_name + " ha sido eliminado de la página.");
-        }
-        else
-        {
-           //window.alert("El video " + video_name + " No ha sido eliminado.");
-        }
-    });
-
-    $('.category-show').on('click', 'span', function(event) { 
-        event.stopPropagation();
-        var catId = $(this).parent().attr('id');
-        var hyphenPos = catId.indexOf('_') + 1;
-        var suffix = catId.substr(hyphenPos);
-        $('.clips').removeClass('active');
-        $('.clips-admin').removeClass('active');
-        $('th.category-label').removeClass('active');
-        $('th.category-show > span').removeClass('active');
-        $('th > span.glyphicon').removeClass('active');
-        $('#clips-upload_'+suffix).removeClass('active');
-        $('.clip-category-add').removeClass('active');
-        $('.clip-category-add > input').val('Nuevo Clip');
-        $('.clips-upload').hide();
-        $(this).toggleClass('glyphicon-triangle-bottom');
-        $(this).toggleClass('glyphicon-triangle-top');
-        if ($(this).hasClass('glyphicon-triangle-top'))
-        {
-            $('#clips-'+suffix).addClass('active');
-            $(this).closest('table').addClass('active');
-            $(this).parent().siblings('.category-label').addClass('active');
-            $(this).parent().siblings('.clip-category-add').addClass('active');
-            $(this).addClass('active');
-            $('.clips-admin th > span.glyphicon').removeClass('glyphicon-triangle-top');
-            $(this).addClass('glyphicon-triangle-top');
-            $('.clips-admin th > span.glyphicon').addClass('glyphicon-triangle-bottom');
-            $(this).removeClass('glyphicon-triangle-bottom');
-            $('#new-category').remove();
-            $('.add-category').show();
-        }
-        else
-        {
-            $('#clips-'+suffix).removeClass('active');
-            $(this).closest('table').removeClass('active');
-            $(this).parent().siblings('.category-label').removeClass('active');
-            $(this).parent().siblings('.clip-category-add').removeClass('active');
-            $(this).removeClass('active');
-        }
-        //window.alert(suffix);
-    });
-
-    $('td.clip-banner').on('click','input', function(){
-        var checkbox_id = $(this).attr('id');
-        var suffixPos = checkbox_id.indexOf('_');
-        var suffix = checkbox_id.substr(suffixPos);
-        if ($(this).attr('checked'))
-            $(this).attr('checked', false);
-        else $(this).attr('checked', true);
-        var request = new XMLHttpRequest();
-        function clipFeatureUpdate()
-        {
-            if (request.readyState === 4 && request.status === 200)
-            {
-                if (request.responseText)
-                {    
-                    var response = request.responseText;
-                }
-                else 
-                {
-                    window.alert("El clip '" + $('#title'+suffix).val() + "' No pudo actualizarse!!");
-                }
-            }
-        }
-        request.open("GET","/admin/index.php/setClipFeature?checkbox_id="+checkbox_id,true);
-        request.onreadystatechange = clipFeatureUpdate;
-        request.send(null);
-    });
-
-    $('.clip-title').on('change', 'input', function() {
-        var input_id = $(this).attr('id');
-        var title = $('#'+input_id).val();
-        var checkName = checkNameInput(title, 1);
-        if (! checkName)
-            return;                   
-        var request = new XMLHttpRequest();
-        function clipFeatureUpdate()
-        {
-            if (request.readyState === 4 && request.status === 200)
-            {
-                if (request.responseText)
-                {    
-                    var response = request.responseText;
-                    window.alert("El nombre del clip ha sido cambiado a: "+response);
-                }
-                else 
-                {
-                    window.alert("El clip '" + title + "' No pudo actualizarse!!");
-                }
-            }
-        }
-        request.open("GET","/admin/index.php/setClipFeature?checkbox_id="+input_id+"&title="+title,true);
-        request.onreadystatechange = clipFeatureUpdate;
-        request.send(null);
-    });
-
-    $('.clip-category-visible').on('click', 'input',  function() {categoryVisibility($(this));});
-
-    $('.clip-category-name').on('change', 'input', function(){changeCategoryName($(this));});
-
-    $('.clip-category-add').on('click', 'input', function(event) {loadSpaceHandling(event, $(this));});  
-
-    $('.clip-category-position').on('change', 'select', function() {changeCategoryPosition($(this));});
-
+    
     $('.add-category').on('click', 'input', function() {
         $(this).parent().hide();
         $('.clip-category-add').removeClass('active');
@@ -209,7 +47,6 @@ $(document).ready(function() {
                         }
                     });
                     $('#new-name').focus();
-                    //window.alert('Para que se guarde la categoría, debe subir mínimo un Clip!');
                 }
                 else 
                 {
@@ -221,7 +58,63 @@ $(document).ready(function() {
         request.onreadystatechange = showNewCategoryDiv;
         request.send(null);
     });
+    /*Mutation observer for handling every new clip insertion; it adds functionality to every new clip input.*/ 
+    // select the target node
+    var target = document.querySelector('#clipspace');
+    
+    // create an observer instance
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            for (var i = 0; i < mutation.addedNodes.length; i++)
+            {
+                if (mutation.addedNodes[i].className && (mutation.addedNodes[i].className).indexOf('clips active') !== -1)
+                {
+                    var m = 1;
+                    var clipsTableId = mutation.addedNodes[i].id;
+                    var hyphenPos = clipsTableId.indexOf('-');
+                    var clipsCode = clipsTableId.substring(hyphenPos + 1);
+                    while ($('#title_'+clipsCode+'-'+m).length)
+                    {
+                        $('#clipspace').on('change', '#title_'+clipsCode+'-'+m, function() { changeClipTitle($(this)); });
+                        $('#clipspace').on('click', '#delete_'+clipsCode+'-'+m, function() { clipDelete($(this)); });
+                        $('#clipspace').on('click', '#visibility_'+clipsCode+'-'+m, function() { changeClipVisibility($(this));});
+                        $('#clipspace').on('click','#banner_'+clipsCode+'-'+m, function(){ changeClipInbanner($(this)); }); 
+                        m++;
+                    }                                       
+                    console.log(clipsCode);
+                }
+            }
+        });
+    });
+    
+    // configuration of the observer:
+    var config = { attributes: true, childList: true, characterData: true };
+ 
+    // pass in the target node, as well as the observer options
+    observer.observe(target, config);
+    /*End of observer.*/
 
+    $('.category-show').on('click', 'span', function(event) { showCategory(event, $(this)); });
+
+    $('.clip-category-name').on('change', 'input', function(){changeCategoryName($(this));});
+    
+    $('.clip-category-visible').on('click', 'input',  function() {categoryVisibility($(this));});
+    
+    $('.clip-category-position').on('change', 'select', function() {changeCategoryPosition($(this));});
+
+    $('.clip-category-add').on('click', 'input', function(event) {loadSpaceHandling(event, $(this));}); 
+    
+    $('.clip-title').on('change', 'input', function() { changeClipTitle($(this)); });
+    
+    $('td.clip-image').on('click', 'button', function() { clipDelete($(this)); });
+    
+    $('td.clip-visible').on('click', 'input', function() { changeClipVisibility($(this));});
+
+    $('td.clip-banner').on('click','input', function(){ changeClipInbanner($(this)); });
+    
+    $('td.clip-change_image').on('click', 'input', function(){ changeClipImage($(this)); });
+    
+    /*Collection of functions that handle every single clips admin characteristic.*/
     function checkNameInput(name, value)
     {
         var namePattern = /^[a-z0-9- _]+$/i;
@@ -261,11 +154,24 @@ $(document).ready(function() {
                         var codeUnderscoreId = idString.substring(7, finalQuotePos);
                         $('#clipspace').on('click', '#'+uploadId, function(event) {loadSpaceHandling(event, $(this));});
                         $('#new-category').replaceWith(response);
-                        $('#clips-admin_'+idString.substr(7, 12)+'span').removeClass('glyphicon-triangle-bottom');
+                        $('#clips-admin_'+idString.substr(7, 12)+' > span').removeClass('glyphicon-triangle-bottom');
                         $('#name_'+codeUnderscoreId).attr('disabled', true);
                         $('#visible_'+codeUnderscoreId).attr('disabled', true);
                         $('#position_'+codeUnderscoreId).attr('disabled', true);
                         $('#'+uploadId).trigger('click');
+                        var selectTags = document.querySelectorAll('select');
+                        var selectsNumber = selectTags.length;
+                        for (i = 1; i < selectsNumber; i++)
+                        {
+                            var optionTag = document.createElement('option');
+                            optionTag.text = position;
+                            optionTag.value = position;
+                            selectTags[i].appendChild(optionTag);
+                        }
+                        $('#clipspace').on('click', '#clips-admin_'+idString.substr(7, 12)+' > span', function(event) { showCategory(event, $(this)); });
+                        $('#clipspace').on('click', '#visible_'+codeUnderscoreId,  function() {categoryVisibility($(this));});
+                        $('#clipspace').on('change', '#name_'+codeUnderscoreId, function(){changeCategoryName($(this));});
+                        $('#clipspace').on('change', '#position_'+codeUnderscoreId, function() {changeCategoryPosition($(this));});
                     }
                     else
                     {
@@ -323,6 +229,7 @@ $(document).ready(function() {
         var categoryCode = suffix.substring(0,lastDashPos);
         if (thisObj.val() === 'Nuevo Clip')
         {
+            thisObj.prop('disabled', true);
             var request = new XMLHttpRequest();
             function newClipLoadSpace()
             {
@@ -332,18 +239,19 @@ $(document).ready(function() {
                     {    
                         var response = request.responseText;
                         $('#upload_space_'+categoryCode).replaceWith(response);
+                        thisObj.val('Cancelar carga');
+                        thisObj.attr('title', 'Oculta el espacio para carga.');
                     }
                     else 
                     {
                         window.alert("El espacio para subir clips '" + categoryCode + "' No pudo cargarse!!");
                     }
+                    thisObj.prop('disabled', false);
                 }
             }
             request.open("GET","/admin/index.php/getClipLoadSpace?code="+categoryCode, true);
             request.onreadystatechange = newClipLoadSpace;
-            request.send(null);
-            thisObj.val('Cancelar carga');
-            thisObj.attr('title', 'Oculta el espacio para carga.');
+            request.send(null);            
         }
         else
         {
@@ -468,8 +376,220 @@ $(document).ready(function() {
         request.onreadystatechange = categoryFeatureUpdate;
         request.send(null);
     };
+    
+    var showCategory = function(event, thisObj)
+    {
+        event.stopPropagation();
+        var catId = thisObj.parent().attr('id');
+        var underscorePos = catId.indexOf('_') + 1;
+        var suffix = catId.substr(underscorePos);
+        $('.clips').removeClass('active');
+        $('.clips-admin').removeClass('active');
+        $('th.category-label').removeClass('active');
+        $('th.category-show > span').removeClass('active');
+        $('th > span.glyphicon').removeClass('active');
+        $('#clips-upload_'+suffix).removeClass('active');
+        $('#clips-upload_'+suffix).replaceWith('<div id="upload_space_' + suffix + '"></div>');
+        $('.clip-category-add').removeClass('active');
+        $('.clip-category-add > input').val('Nuevo Clip');
+        $('.clips-upload').hide();
+        thisObj.toggleClass('glyphicon-triangle-bottom');
+        thisObj.toggleClass('glyphicon-triangle-top');
+        if (thisObj.hasClass('glyphicon-triangle-top'))
+        {
+            $('#clips-'+suffix).addClass('active');
+            thisObj.closest('table').addClass('active');
+            thisObj.parent().siblings('.category-label').addClass('active');
+            thisObj.parent().siblings('.clip-category-add').addClass('active');
+            thisObj.addClass('active');
+            $('.clips-admin th > span.glyphicon').removeClass('glyphicon-triangle-top');
+            thisObj.addClass('glyphicon-triangle-top');
+            $('.clips-admin th > span.glyphicon').addClass('glyphicon-triangle-bottom');
+            thisObj.removeClass('glyphicon-triangle-bottom');
+            $('#new-category').remove();
+            $('.add-category').show();
+        }
+        else
+        {
+            $('#clips-'+suffix).removeClass('active');
+            thisObj.closest('table').removeClass('active');
+            thisObj.parent().siblings('.category-label').removeClass('active');
+            thisObj.parent().siblings('.clip-category-add').removeClass('active');
+            thisObj.removeClass('active');
+        }
+        //window.alert(suffix);
+    };
+    
+    var clipDelete = function(thisObj)
+    {
+        var delete_id = thisObj.attr('id');
+        var underscorePos = delete_id.indexOf('_');
+        var suffix = delete_id.substr(underscorePos);
+        var videoname_id = '#title' + suffix;
+        var video_name = $(videoname_id).val();
+        var del_confirm = window.confirm("¿Está seguro de borrar el clip "+ video_name + " ?");
+        if (del_confirm)
+        {
+            var request = new XMLHttpRequest();
+            function clipDeleted()
+            {
+                if (request.readyState === 4 && request.status === 200)
+                {
+                    if (request.responseText)
+                    {    
+                        var response = request.responseText;
+                        $(videoname_id).parent().remove();
+                        $('#img'+suffix).parent().remove();
+                        $('#delete'+suffix).parent().remove();
+                        $('#visibility'+suffix).parent().remove();
+                        $('#banner'+suffix).parent().remove();
+                        $('#upload-img'+suffix).parent().remove();
+                        window.alert("El clip " + response + " ha sido eliminado de la página.");
+                    }
+                    else 
+                    {
+                        window.alert("El clip '" + video_name + "' No pudo eliminarse!!");
+                    }
+                }
+            }
+            request.open("GET","/admin/index.php/clipDelete?clip_suffix="+suffix, true);
+            request.onreadystatechange = clipDeleted;
+            request.send(null);
+        }
+        else
+        {
+           //window.alert("El video " + video_name + " No ha sido eliminado.");
+        }
+    };
+    
+    var changeClipVisibility = function(thisObj)
+    {
+        var checkbox_id = thisObj.attr('id');
+        var suffixPos = checkbox_id.indexOf('_');
+        var suffix = checkbox_id.substr(suffixPos);
+        $('#img'+suffix).toggleClass('not-visible');
+        if ($('#img'+suffix).hasClass('not-visible'))
+        {
+            $('#banner'+suffix).attr('disabled', true);
+            $('#banner'+suffix).attr('checked', false);
+            thisObj.attr('checked', false);
+        }
+        else
+        {
+            $('#banner'+suffix).attr('disabled', false);
+            thisObj.attr('checked', true);
+        }
+        var request = new XMLHttpRequest();
+        function clipFeatureUpdate()
+        {
+            if (request.readyState === 4 && request.status === 200)
+            {
+                if (request.responseText)
+                {    
+                    var response = request.responseText;
+                }
+                else 
+                {
+                    window.alert("El clip '" + $('#title'+suffix).val() + "' No pudo hacerse visible!!");
+                }
+            }
+        }
+        request.open("GET","/admin/index.php/setClipFeature?checkbox_id="+checkbox_id,true);
+        request.onreadystatechange = clipFeatureUpdate;
+        request.send(null);                  
+    };
+    
+    var changeClipInbanner = function(thisObj)
+    {
+        var checkbox_id = thisObj.attr('id');
+        var suffixPos = checkbox_id.indexOf('_');
+        var suffix = checkbox_id.substr(suffixPos);
+        if (thisObj.attr('checked'))
+            thisObj.attr('checked', false);
+        else thisObj.attr('checked', true);
+        var request = new XMLHttpRequest();
+        function clipFeatureUpdate()
+        {
+            if (request.readyState === 4 && request.status === 200)
+            {
+                if (request.responseText)
+                {    
+                    var response = request.responseText;
+                }
+                else 
+                {
+                    window.alert("El clip '" + $('#title' + suffix).val() + "' No pudo actualizarse!!");
+                }
+            }
+        }
+        request.open("GET","/admin/index.php/setClipFeature?checkbox_id="+checkbox_id,true);
+        request.onreadystatechange = clipFeatureUpdate;
+        request.send(null);
+    };
+    
+    var changeClipTitle = function(thisObj)
+    {
+        var input_id = thisObj.attr('id');
+        var title = $('#'+input_id).val();
+        var checkName = checkNameInput(title, 1);
+        if (! checkName)
+            return;                   
+        var request = new XMLHttpRequest();
+        function clipFeatureUpdate()
+        {
+            if (request.readyState === 4 && request.status === 200)
+            {
+                if (request.responseText)
+                {    
+                    var response = request.responseText;
+                    window.alert("El nombre del clip ha sido cambiado a: "+response);
+                }
+                else 
+                {
+                    window.alert("El clip '" + title + "' No pudo actualizarse!!");
+                }
+            }
+        }
+        request.open("GET","/admin/index.php/setClipFeature?checkbox_id="+input_id+"&title="+title,true);
+        request.onreadystatechange = clipFeatureUpdate;
+        request.send(null);
+    };
+    
+    var changeClipImage = function(thisObj)
+    {
+        var button_id = thisObj.attr('id');
+        var suffixPos = button_id.indexOf('_');
+        var suffix = button_id.substr(suffixPos+1);
+        var hyphenPos = suffix.indexOf('-');
+        var categoryCode = suffix.substring(0, hyphenPos);
+        var listOrder = suffix.substring(hyphenPos+1);
+        $('#clips-upload_'+categoryCode).replaceWith('<div id="upload_space_' + categoryCode + '"></div>');
+        var request = new XMLHttpRequest();
+        $('.clip-category-add.active > input').prop('disabled', true);
+        function newClipImgLoadSpace()
+        {
+            if (request.readyState === 4 && request.status === 200)
+            {
+                if (request.responseText)
+                {    
+                    var response = request.responseText;
+                    $('#upload_space_'+categoryCode).replaceWith(response);
+                    if ($('.clip-category-add.active > input').val('Nuevo Clip') )
+                        $('.clip-category-add.active > input').val('Cancelar carga');
+                }
+                else 
+                {
+                    window.alert("El espacio para cambiar imagen en '" + categoryCode + "' No pudo cargarse!!");
+                }
+                $('.clip-category-add.active > input').prop('disabled', false);
+            }
+        }
+        request.open("GET","/admin/index.php/getClipLoadSpace?code="+categoryCode+"&listorder="+listOrder, true);
+        request.onreadystatechange = newClipImgLoadSpace;
+        request.send(null);        
+    };
 });
-//<---End of jQuery code snippets for clips administration.-->
+//<---End of code snippets for clips administration.-->
 
 
 

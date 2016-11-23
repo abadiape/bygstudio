@@ -183,7 +183,60 @@ class Clientes_model extends CI_Model {
             return array($presentOrderSelectId, $formerValue);
         }
         
-	public function del_contact($conta,$idi)
+        public function clip_delete($type, $listOrder)
+        {
+            $query = $this->db->get_where('byg_clips', array('type' => $type, 'list_order' => $listOrder));  
+            $row = $query->row();
+            $imageName = str_replace(' ', '_', $row->img_name);
+            $videoName = trim($row->fname);
+            $clipId = $row->id;
+            $title = ucwords($row->title);
+            if (! $videoName)
+            {
+                $videoName = $imageName . '.mp4';
+                $imageName = $imageName . '.jpg';
+            }
+            else
+            {
+                $videoName = str_replace(' ', '_', $videoName);
+            }
+            $query = $this->db->get_where('clip_categories', array('code' => $type));
+            $row = $query->row();
+            $clipFiles = array();
+            if ($row->name !== $row->code)
+            {
+                $dir = realpath(APPPATH . '../uploads/' . $row->path);
+                $clipFiles[0] = $dir . '/images/' . $imageName;
+                $clipFiles[1] = $dir . '/videos/' . $videoName;
+            }
+            else
+            {
+                $dir = realpath(FCPATH . '../video/' . $row->path);
+                $clipFiles[0] = $dir . '/' . $imageName;
+                $clipFiles[1] = $dir . '/' .$videoName;
+            }
+            $n = 0;
+            foreach ($clipFiles as $clipFile)
+            {
+                if (is_file($clipFile))
+                {
+                    unlink($clipFile);
+                    $n++;
+                    if ($n === 1)
+                    {
+                        $this->db->where('id', $clipId);
+                        $this->db->delete('byg_clips');
+                    }
+                    else
+                    {
+                        return $title;
+                    }
+                }
+            }
+            return 0;
+        }
+
+        public function del_contact($conta,$idi)
 	{
             $pos = strpos($idi,'i');
             $i = substr($idi,($pos+1));		
@@ -317,7 +370,7 @@ class Clientes_model extends CI_Model {
             }
 	}
         
-	public function get_clips($type = false)
+	public function get_clips($type = false, $order = false)
 	{
             $this->db->select('*');
             $this->db->order_by('type, list_order');
@@ -326,12 +379,21 @@ class Clientes_model extends CI_Model {
                $this->db->from('clip_categories');
                $this->db->join('byg_clips', 'clip_categories.code = byg_clips.type');
                $query = $this->db->get();
+               $info = $query->result_array();
             }
             else
             {
-               $query =  $this->db->get_where('byg_clips', array('type' => $type));
+                if (! $order)
+                {
+                    $query =  $this->db->get_where('byg_clips', array('type' => $type));
+                    $info = $query->result_array();
+                }
+                else
+                {
+                    $query =  $this->db->get_where('byg_clips', array('type' => $type, 'list_order' => $order));
+                    $info = $query->row();
+                }
             }           
-            $info = $query->result_array();
             return $info;
 	}
         
@@ -499,8 +561,8 @@ class Clientes_model extends CI_Model {
                     'user' => $this->input->post('user1'),
                     'pwd' => md5('byg' . $this->input->post('pwd1')). ':byg'
             );
-            $this->db->insert('customers_users',$datos);				
-            return $this->db->insert('datos_clientes',$data);				
+            $this->db->insert('datos_clientes',$data);				
+            return $this->db->insert('customers_users',$datos);				
 	}
         
         public function set_categoryFeature($checkboxId, $name = false) 
@@ -540,11 +602,8 @@ class Clientes_model extends CI_Model {
             $underscorePos = strpos($checkboxId, '_');
             $clipFeature = substr($checkboxId, 0, $underscorePos);
             $suffix = substr($checkboxId, $underscorePos+1);
-            $clip = array('type' => substr($suffix, 0, -1), 'list_order' => substr($suffix, -1));
-            if (! $this->db->get_where('byg_clips', $clip))
-            {
-              $clip = array('type' => substr($suffix, 0, -2), 'list_order' => substr($suffix, -2));
-            }
+            $dashPos = strpos($suffix, '-');
+            $clip = array('type' => substr($suffix, 0, $dashPos), 'list_order' => substr($suffix, $dashPos + 1));
             $query = $this->db->get_where('byg_clips', $clip);
             $row = $query->row();
             $featureValue = (int) $row->$clipFeature;
@@ -800,15 +859,27 @@ class Clientes_model extends CI_Model {
                         break;
                     }
                 }
+                $listOrder = $this->input->post('listorder');
                 $date = date('Y-m-d H:i:s', time());
                 $this->db->select_max('list_order');
-                $query = $this->db->get_where('byg_clips', array('type' => $tipo));
+                if ($listOrder)
+                {
+                    $query = $this->db->get_where('byg_clips', array('type' => $tipo, 'list_order' => $listOrder));
+                }
+                else
+                {
+                    $query = $this->db->get_where('byg_clips', array('type' => $tipo));
+                }
                 $clip = $query->row();
                 $query = $this->db->get_where('clip_categories', array('code' => $tipo));
                 $categoryData = $query->row();
                 $categoryName = $categoryData->name;
                 $dir = $categoryData->path;
                 $newListorder = $clip->list_order + 1;
+                if ($listOrder)
+                {
+                   $newListorder = $clip->list_order; 
+                }
                 if (! $clip->list_order)
                 {
                     $this->ftp->connect();
@@ -830,6 +901,11 @@ class Clientes_model extends CI_Model {
                     $dotPos = strpos($imagename, '.');
                     $title = strtolower(substr($imagename, 0, $dotPos));
                     $fname = 'waiting for video';
+                    if ($listOrder)
+                    {
+                        $title = $clip->title;
+                        $fname = $clip->fname; 
+                    }
                     $config['upload_path'] = realpath(APPPATH . '../uploads/' . $dir . '/images');  
                 }	
                 $data = array(
@@ -840,7 +916,8 @@ class Clientes_model extends CI_Model {
                         'ftype' => $_FILES['file']['type'],
                         'img_name' => $imagename,
                         'date' => $date,
-                        'list_order' => $newListorder
+                        'list_order' => $newListorder,
+                        'visibility' => 1
                 );
                 $this->db->like('fname','waiting for video');
                 $this->db->or_like('img_name','video already set');
@@ -866,6 +943,12 @@ class Clientes_model extends CI_Model {
                         'updated_at' => date('Y-m-d H:i:s', time()),
                         'by_user' => $this->session->userdata('user')
                         ));
+                }
+                elseif ($listOrder)
+                {
+                    $this->db->where('type', $tipo);
+                    $this->db->where('list_order', $listOrder);
+                    $this->db->update('byg_clips',array('img_name' => $imagename)); 
                 }
                 else  
                 {

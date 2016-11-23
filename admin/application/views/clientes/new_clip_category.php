@@ -42,24 +42,32 @@
                             request = new XMLHttpRequest();	
                     function showNewClip()
                     {
-                        if (request.readyState == 4 && request.status == 200)
+                        if (request.readyState === 4 && request.status === 200)
                         {	
                             var uploadAnswer = request.responseText;
                             if (ftype.substr(0, 5) !== "image")
                             {    
                                 window.alert(uploadAnswer);
-                                if (uploadAnswer.indexOf("nuevo") !== -1)
-                                {
-                                    $("#clips-upload_<?php echo $code ?>").hide();
-                                    $("#upload_<?php echo $code ?>_<?php echo $id ?>").val("Nuevo Clip");
-                                    $("#clips-upload_<?php echo $code ?> > p").html("Arrastre el VIDEO del nuevo clip y la respectiva FOTO; en cualquier orden, hacia el espacio debajo, para subirlos.");  
-                                    myNewDropzone.removeAllFiles();
-                                }
                             }
                             else
-                            {
-                                $("#clips-<?php echo $code ?>").replaceWith(uploadAnswer);  
+                            {                                                                
+                                if (uploadAnswer.indexOf("El nuevo clip") !== -1)
+                                {
+                                    var paragraphPos = uploadAnswer.indexOf("<p");
+                                    uploadAnswer = uploadAnswer.substring(0, paragraphPos);
+                                }
+                                $(uploadAnswer).insertAfter("div.clips-upload.active");
                             } 
+                            if (uploadAnswer.indexOf("El nuevo clip") !== -1)
+                            {
+                                myNewDropzone.removeAllFiles();
+                                var newUploadSpace = "<div id='upload_space_<?php echo $code ?>'></div>";
+                                $("#clips-upload_<?php echo $code ?>").replaceWith(newUploadSpace);                                
+                                $("#name_<?php echo $code ?>_<?php echo $id ?>").attr('disabled', false);
+                                $("#visible_<?php echo $code ?>_<?php echo $id ?>").attr('disabled', false);
+                                $("#position_<?php echo $code ?>_<?php echo $id ?>").attr('disabled', false);
+                                $("#upload_<?php echo $code ?>_<?php echo $id ?>").trigger('click');
+                            }
                         }
                     };
 
@@ -110,5 +118,4 @@
         });
     </script>
 </div>
-<table id="clips-<?php echo $code ?>" class="clips active" style="display: none"></table>
 

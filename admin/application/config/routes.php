@@ -47,6 +47,7 @@ $route['cambio'] = 'login/cambio';
 $route['changeCategoryOrder'] = 'clientes/changeCategoryOrder';
 $route['changepass'] = 'login/changepass';
 $route['clientes'] = 'clientes/index';
+$route['clipDelete'] = 'clientes/clipDelete';
 $route['comments'] = 'clientes/comments';
 $route['comments/(:any)'] = 'clientes/comments';
 $route['crear'] = 'clientes/crear';

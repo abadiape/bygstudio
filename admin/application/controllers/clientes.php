@@ -158,6 +158,16 @@ class Clientes extends CI_Controller {
             		redirect(site_url('login'));
             	}
         }
+        /*Deletes a given clip from the database and the server file system, based on clip type (category) and position.*/
+        public function clipDelete()
+        {
+            $clipSuffix = substr($this->input->get('clip_suffix'), 1);
+            $dashPos = strpos($clipSuffix, '-');
+            $type = substr($clipSuffix, 0, $dashPos);
+            $listOrder = substr($clipSuffix, $dashPos + 1);
+            $clipDeleted = $this->clientes_model->clip_delete($type, $listOrder);
+            echo $clipDeleted;   
+        }
         /*Permite modificar los comentarios hechos por byg a un proyecto dado en una nueva ventana*/
         public function comments ()
 	{
@@ -347,6 +357,13 @@ class Clientes extends CI_Controller {
         public function getClipLoadSpace()
         {
             $data['key'] = $this->input->get('code');
+            if ($this->input->get('listorder'))
+            {
+               $data['order'] = $this->input->get('listorder'); 
+               $clipObject = $this->clientes_model->get_clips($data['key'], $data['order']); 
+               $data['title'] = ucwords($clipObject->title);
+               $data['text'] = "<p>Arrastre el nuevo STILL para el clip: '" . $data['title'] . "', hacia el espacio debajo, para subirlo.</p>";
+            }
             $newClipLoadSpace = $this->load->view('clientes/clip_upload_space', $data, true);
             echo $newClipLoadSpace;
         }     
@@ -691,7 +708,7 @@ class Clientes extends CI_Controller {
                     }                            
             }
 	}
-        /*Sube el video del nuevo clip al sistema de archivos y actualiza en la base de datos la tabla byg_clips. */
+        /*Sube el nuevo clip al sistema de archivos y actualiza en la base de datos la tabla byg_clips. */
 	public function uploadclip()
 	{
             $type = $this->session->userdata('type');
@@ -728,18 +745,22 @@ class Clientes extends CI_Controller {
                     if (substr($this->input->get('ftype'), 0, 5) === 'image')
                     {
                         $newClipInfo = $this->load->view('clientes/new_clip', $data, TRUE);
+                        if ($this->session->userdata('files_number'))
+                        {
+                           $newClipInfo .= '<p id="new-paragraph" style="display:none">El nuevo clip</p>';
+                           $this->session->unset_userdata('files_number');
+                        }
                         echo $newClipInfo;
                     }
                     elseif ($this->session->userdata('files_number'))
                     {
+                        $this->session->unset_userdata('files_number');
                         echo 'El nuevo clip "'. ucwords($data['clips'][$clipIndex]['title']) . '" ha sido cargado en el servidor!';
                     }
                     else
                     {
                         echo 'Falta subir el still HD, que acompaña al clip! Favor hacerlo antes de salir de sesión.';
-                    }
-                    if ($this->session->userdata('files_number'))
-                        $this->session->unset_userdata('files_number');
+                    }                        
                 }
             }		
 	}
