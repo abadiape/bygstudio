@@ -161,7 +161,7 @@
             $clipType = $clip['type'];
             $listOrder = $clip['list_order'];
             $visibility = $clip['visibility'];
-            $inBanner = $clip['banner'];
+            $inBanner = $clip['in_banner'];
             $clipImage = strtr($clip['img_name'],$trans);
             if (! strpos($clipImage, '.'))
             {
@@ -189,7 +189,7 @@
             $clipsInBanner[$clipType][$listOrder] = $inBanner;
             $categoriesId[$clipType] = $clip['category_id'];
             $categoriesName[$clipType] = $clip['name'];
-            $categoriesOrder[$clipType] = $clip['order'];
+            $categoriesOrder[$clipType] = $clip['category_order'];
             $categoriesPath[$clipType] = $clip['path'];
             $categoriesVisibility[$clipType] = $clip['visible'];
             $categoriesCreatedAt[$clipType] = $clip['created_at'];

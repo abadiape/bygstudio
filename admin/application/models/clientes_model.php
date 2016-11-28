@@ -29,7 +29,7 @@ class Clientes_model extends CI_Model {
                 'code' => $code,
                 'name' => $name,
                 'path' => $path,
-                'order' => $order,
+                'category_order' => $order,
                 'visible' => $visible,
                 'created_at' => $createdAt,
                 'by_user' => $user
@@ -172,14 +172,14 @@ class Clientes_model extends CI_Model {
         {
             $query = $this->db->get_where('clip_categories', array('category_id' => $categoryId));
             $row = $query->row();
-            $formerValue = $row->order;
-            $query = $this->db->get_where('clip_categories', array('order' => $newValue));
+            $formerValue = $row->category_order;
+            $query = $this->db->get_where('clip_categories', array('category_order' => $newValue));
             $row = $query->row();
             $presentOrderSelectId = 'position_' . $row->code . '_' .$row->category_id;
             $this->db->where('category_id', $categoryId);
-            $this->db->update('clip_categories', array('order' => $newValue));
+            $this->db->update('clip_categories', array('category_order' => $newValue));
             $this->db->where('category_id', $row->category_id);
-            $this->db->update('clip_categories', array('order' => $formerValue));
+            $this->db->update('clip_categories', array('category_order' => $formerValue));
             return array($presentOrderSelectId, $formerValue);
         }
         
@@ -413,7 +413,7 @@ class Clientes_model extends CI_Model {
             {
                 $id = $this->session->userdata('userid');	
             }
-            $query = $this->db->get_where('datos_clientes',array('id' => $id));	
+            $query = $this->db->get_where('customers_users',array('id' => $id));	
             $info['datos'] = $query->row_array();
             $cliente = $info['datos']['cliente'];
             $query->free_result();
@@ -601,6 +601,10 @@ class Clientes_model extends CI_Model {
         {
             $underscorePos = strpos($checkboxId, '_');
             $clipFeature = substr($checkboxId, 0, $underscorePos);
+            if ($clipFeature === 'banner')
+            {
+                $clipFeature = 'in_banner';
+            }
             $suffix = substr($checkboxId, $underscorePos+1);
             $dashPos = strpos($suffix, '-');
             $clip = array('type' => substr($suffix, 0, $dashPos), 'list_order' => substr($suffix, $dashPos + 1));
@@ -613,7 +617,7 @@ class Clientes_model extends CI_Model {
                $this->db->update('byg_clips', array($clipFeature => 0)); 
                if ($clipFeature === 'visibility')
                {
-                  $this->db->update('byg_clips', array('banner' => 0)); 
+                  $this->db->update('byg_clips', array('in_banner' => 0)); 
                }
                return 0;
             }

@@ -86,12 +86,16 @@
                 <th colspan="1" onClick="goPlay('<?= $versions["videos"][$j]["id"] ?>')">
                     <a href="javascript:void(0)">Play HD</a>
                 </th>
+            <?php if ($type === 'admin'): ?>
                 <th colspan="1" onClick="goDown('<?= $versions["videos"][$j]["id"] ?>')">
                     <a href="javascript:void(0)">Download</a>
                 </th>
-            <?php if ($type === 'admin'): ?>
                 <th colspan="1" onClick="delVid('<?= $file ?>', '<?= $versions['videos'][$j]['id'] ?>', '<?= $video ?>')">
                     <a href="javascript:void(0)">Eliminar</a>
+                </th>
+             <?php else: ?>
+                <th colspan="1">
+                    <a href="javascript:void(0)">&nbsp;</a>
                 </th>
             <?php endif; ?>
                 <td class="filling">

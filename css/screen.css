@@ -1,0 +1,158 @@
+@font-face{ 
+	font-family: 'byg';
+	src: url('../fonts/byg-webfont.eot');
+	src: url('../fonts/byg-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/byg-webfont.woff') format('woff'),
+	url('../fonts/byg-webfont.ttf') format('truetype'),
+	url('../fonts/byg-webfont.svg#../fonts/byg-webfont') format('svg');
+}
+
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: #000;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+a { text-decoration: none; }
+a:focus { outline: 0; }
+
+.hide { position: absolute; top: -9999px; left: -9999px; }
+
+img { -ms-interpolation-mode: bicubic; }
+
+img { 
+	behavior: url(css/iepngfix.htc); 
+}
+
+img {
+	border:none;
+}
+
+.clear {
+	clear: both;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+}
+
+body {
+	margin:0px;
+	padding:0px;
+	top: 0;
+	left: 0;
+	font-size: 1.0em;
+	font-family: Helvetica, Arial, sans-serif;
+	background-position:top;
+	background-repeat:no-repeat;
+}
+
+#testcommand {
+	text-align:left;
+	margin:0px auto;
+	position:absolute;
+	top:0px;
+	margin-left:0px;
+}
+
+#website {
+	text-align:left;
+	position:relative;
+	background:transparent;
+	background-repeat:no-repeat;
+}
+
+.list-wrap {
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+#logo {
+	width:7.5em;
+	height: 4.625em;
+	float:left;
+	position: absolute;
+	margin-left: 5%;
+	margin-top: -3.125em;
+	background-image:url(../img/logo.png);
+	background-repeat:no-repeat; 
+	background-position:top; 
+}
+
+#tab-two .nav {
+	margin-top: 2.5em;
+	margin-left: 21%;
+}
+
+#items {
+	font-size: 1.3125em;
+	white-space: nowrap;
+}
+
+#tab-two .nav ul {
+	font-family: 'byg', Helvetica, Arial, sans-serif;
+	position: absolute;
+	width: 85%;
+	height: 1.3125em;
+	float: left;
+	line-height: 1.0em;
+	color: #989898;
+	letter-spacing: 0.25em;
+	list-style: none;
+	display: block;
+}
+
+#tab-two .nav li.last { margin-right: 0; }
+
+#tab-two .nav li {
+	font-family: 'byg', Helvetica, Arial, sans-serif;
+	color: #989898;
+	text-decoration: none;
+	letter-spacing: 0.25em;
+	padding: 0 0.625em;
+	display: inline;
+	position:relative;
+        margin-right: 8%
+}
+
+#tab-two .nav li a {	
+	text-decoration: none;
+	color: #989898;
+	cursor:pointer;
+}
+
+#tab-two .nav li a:hover {
+	color: #bdbdbd;	
+}
+
+#tab-two .nav li a:active {
+	color: #c6d73d;
+}
+
+#tab-two .nav li ul {
+	display:none;
+	position:absolute;
+	left:0;
+	top:120%;
+}
+
+#tab-two .nav li:hover > ul {
+	display:block;
+}
+
+#tab-two .nav li:hover a {
+	color: #bdbdbd;
+}
+
+#tab-two .nav li:hover li a {
+	color: #989898;
+}
+
+#tab-two .nav li li a:hover {
+	color: #bdbdbd;
+}

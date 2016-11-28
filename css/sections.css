@@ -1,0 +1,191 @@
+@font-face{ 
+	font-family: 'byg2';
+	src: url('../fonts/byg2-webfont.eot');
+	src: url('../fonts/byg2-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/byg2-webfont.woff') format('woff'),
+	url('../fonts/byg2-webfont.ttf') format('truetype'),
+	url('../fonts/byg2-webfont.svg#../fonts/byg2-webfont') format('svg');
+}
+
+@font-face{ 
+	font-family: 'byg3';
+	src: url('../fonts/byg3-webfont.eot');
+	src: url('../fonts/byg3-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/byg3-webfont.woff') format('woff'),
+	url('../fonts/byg3-webfont.ttf') format('truetype'),
+	url('../fonts/byg3-webfont.svg#../fonts/byg3-webfont') format('svg');
+}
+
+@font-face{ 
+	font-family: 'byg4';
+	src: url('../fonts/byg4-webfont.eot');
+	src: url('../fonts/byg4-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/byg4-webfont.woff') format('woff'),
+	url('../fonts/byg4-webfont.ttf') format('truetype'),
+	url('../fonts/byg4-webfont.svg#../fonts/byg4-webfont') format('svg');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	width: 100%;
+}
+
+body {
+	margin:0px;
+	padding:0px;
+	top: 0;
+	left: 0;
+	font-size: 15px;
+	font-family: 'byg2', Helvetica, sans-serif;
+}
+
+.clear {
+	clear: both;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+}
+
+img { -ms-interpolation-mode: bicubic; }
+
+img { 
+	behavior: url(css/iepngfix.htc); 
+}
+
+img {
+	border:none;
+}
+
+#vname {
+text-align:left;
+left:16em;
+color:#989898;
+font-size:1.5em;
+position:absolute;
+top:8.0em;
+z-index:1;
+}
+
+#container {
+	width: 95%;
+	margin:0;
+	text-align:left;
+	position:relative;
+	background:transparent;
+	background-repeat:no-repeat;
+	display: block;
+}
+	
+#container h1 {
+	font-family: 'byg3', Helvetica, sans-serif;
+	font-size: 34px;
+	color: #bdbdbd;
+	letter-spacing: 0px;
+	margin-bottom: 50px;
+}
+
+#container h1 span {
+	color: #788826;
+}
+
+#container p {
+	font-family: 'byg2', Helvetica, sans-serif;
+	font-size: 1.1875em;
+	line-height: 21px;
+	color: #727272;
+	letter-spacing: 0px;
+	margin-right:144px;
+}
+
+#contact #container p {
+	font-family: 'byg2', Helvetica, sans-serif;
+	font-size: 1.3125em;
+	line-height: 1.3125em;
+	color: #727272;
+	letter-spacing: 0px;
+	margin-right:0px;
+	white-space:nowrap;
+}
+
+#container li {
+	font-family: 'byg2', Helvetica, sans-serif;
+	font-size: 1.125em;
+	line-height: 21px;
+	color: #727272;
+	letter-spacing: 0px;
+	list-style: none;
+	padding-bottom:0.5em;
+}
+
+#container p span {
+	font-family: 'byg4', Helvetica, sans-serif;
+	color: #788826;
+}
+
+#container a {
+	font-family: 'byg2', Helvetica, sans-serif;
+	color: #788826;
+	letter-spacing: 0px;
+}
+
+#container .wrapper a {color: #000000;}
+
+#container .wrapper a:hover {color: #FFFFFF;}
+
+.anythingWindow video {position:absolute;top:0;
+}
+
+p span {
+	color: #788826;
+}
+
+
+.left {
+	width: 280px;
+	float: left;
+}
+
+.right {
+	width: 280px;
+	float: left;
+	margin-left: 40px;
+}
+
+#videoleft {
+	width: 400px;
+	margin-bottom: 80px;
+	float: left;
+}
+
+#videoright {
+	width: 400px;
+	margin-bottom: 80px;
+	margin-left: 80px;
+	float: left;
+}
+
+#videoleft p {
+	font-family: 'byg2', Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 22px;
+	color: #727272;
+	letter-spacing: 0px;
+}
+
+#videoright p {
+	font-family: 'byg2', Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 22px;
+	color: #727272;
+	letter-spacing: 0px;
+}
+
+#videocontainer {
+	width: 400px;
+	height: 300px;
+	margin-bottom:20px;
+}

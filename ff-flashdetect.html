@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>Byg Studio</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="BYG STUDIO offers a whole range of specialized postproduction services including editing, color grading, animation, compositing and VFX for commercials, TV series and feature films for the USA and Latin American markets. We are based in Mexico." />
+	<meta name="keywords" content="Byg, Bygstudio, Byg Films, Producciones, Productoras, Post, Postproductora, Postproducciones, Postproduccion, Postproduction, Mexico, Productions, TV, Spots, Mexicano, America Latina, Colombia, Publicidad, La Otra Familia, Heroes del Norte" />
+	<meta name="author" content="Byg Studio" />
+	<meta name="copyright" content="Prohibida su reproducción por cualquier forma o medio. Byg Studio 2011." />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<meta name="MSSmartTagsPreventParsing" content="true" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="apple-touch-icon" href="byg-apple-touch-icon.png">
+	<link rel="stylesheet" href="css/reset1.0.css" type="text/css" media="screen" />
+<!-- Style -->
+	<style type="text/css">
+	html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+	}
+	</style>
+<!-- Flash Detect -->
+	<script language="javascript" type="text/javascript">
+	<!--
+	var requiredVersion = 8;  
+	var useRedirect = true;   
+	var flashPage   = "mainpage.php"
+	var noFlashPage = "noflash.html"
+	var upgradePage = "noflash.html"
+	var flash2Installed = false;    
+	var flash3Installed = false;   
+	var flash4Installed = false;    
+	var flash5Installed = false;    
+	var flash6Installed = false;    
+	var flash7Installed = false;    
+	var flash8Installed = false;    
+	var flash9Installed = false;    
+	var maxVersion = 9;             
+	var actualVersion = 0;          
+	var hasRightVersion = false;    
+	var jsVersion = 1.0;            
+	// -->
+	</script>
+	<script language="javascript" type="text/javascript">
+	<!--
+	var isIE  = (navigator.appVersion.indexOf("MSIE") != -1) ? true : false;    // true if we're on ie
+	var isWin = (navigator.appVersion.toLowerCase().indexOf("win") != -1) ? true : false; // true if we're on windows
+	jsVersion = 1.1;
+	if(isIE && isWin){
+	document.write('<SCR' + 'IPT LANGUAGE=VBScript\> \n');
+	document.write('on error resume next \n');
+	document.write('flash2Installed = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.2"))) \n');
+	document.write('flash3Installed = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.3"))) \n');
+	document.write('flash4Installed = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.4"))) \n');
+	document.write('flash5Installed = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.5"))) \n');  
+	document.write('flash6Installed = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.6"))) \n');  
+	document.write('flash7Installed = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.7"))) \n');
+	document.write('flash8Installed = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.8"))) \n');
+	document.write('flash9Installed = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.9"))) \n');
+	document.write('<\/SCR' + 'IPT\> \n'); // break up end tag so it doesn't end our script
+	}
+	// -->
+	</script>
+	<script language="javascript" type="text/javascript">
+	<!--
+	function detectFlash() {  
+	// If navigator.plugins exists...
+	if (navigator.plugins) {
+    // ...then check for flash 2 or flash 3+.
+    if (navigator.plugins["Shockwave Flash 2.0"]
+	|| navigator.plugins["Shockwave Flash"]) {
+	var isVersion2 = navigator.plugins["Shockwave Flash 2.0"] ? " 2.0" : "";
+	var flashDescription = navigator.plugins["Shockwave Flash" + isVersion2].description;
+	var flashVersion = parseInt(flashDescription.substring(16));
+	flash2Installed = flashVersion == 2;    
+	flash3Installed = flashVersion == 3;
+	flash4Installed = flashVersion == 4;
+	flash5Installed = flashVersion == 5;
+	flash6Installed = flashVersion == 6;
+	flash7Installed = flashVersion == 7;
+	flash8Installed = flashVersion == 8;
+	flash9Installed = flashVersion >= 9;
+    }
+	}
+	for (var i = 2; i <= maxVersion; i++) {  
+    if (eval("flash" + i + "Installed") == true) actualVersion = i;
+	}
+	if(navigator.userAgent.indexOf("WebTV") != -1) actualVersion = 4;  
+	if (actualVersion >= requiredVersion) {
+	if (useRedirect) {
+	if(jsVersion > 1.0) {
+	window.location.replace(flashPage);  
+	} else {
+	window.location = flashPage;
+	}
+    }
+	hasRightVersion = true;                
+	} else {  
+	if (useRedirect) {
+	if(jsVersion > 1.0) {
+	window.location.replace((actualVersion >= 2) ? upgradePage : noFlashPage);
+	} else {
+	window.location = (actualVersion >= 2) ? upgradePage : noFlashPage;
+	}
+    }
+	}
+	}
+	detectFlash();  
+	// -->
+	</script>
+<!-- Head Ends -->
+	</head>
+<!-- Body Starts -->
+	<body>
+<!-- Website Ends -->
+	</body>
+	</html>

@@ -39,6 +39,7 @@
 */
 $route['addClipCategory'] = 'clientes/addClipCategory';
 $route['addNewCategoryDiv'] = 'clientes/addNewCategoryDiv';
+$route['addNewVideobox'] = 'clientes/addNewVideobox';
 $route['addvisit'] = 'versiones/addvisit';
 $route['agregar'] = 'clientes/agregar';
 $route['agregar/(:any)'] = 'clientes/agregar';

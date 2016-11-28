@@ -32,7 +32,15 @@ class Clientes extends CI_Controller {
         {
             $newCatDivHtml = $this->load->view('clientes/new_category','', true);
             echo $newCatDivHtml;
-        }       
+        }
+        //It loads and sends a video box table to the main page to reproduce a clicked video on a popup.
+        public function addNewVideobox()
+        {
+            $data['video'] = $this->input->get('video_path');
+            $data['suffix'] = $this->input->get('suffix');
+            $newVideoboxHtml = $this->load->view('clientes/new_videobox', $data, true);
+            echo $newVideoboxHtml;
+        }
         /*Adiciona un nuevo proyecto. Se requiere un nombre para el proyecto y seleccionar la productora. */
 	public function agregar() 
 	{
