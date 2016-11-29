@@ -411,9 +411,13 @@ class Clientes_model extends CI_Model {
             else $id = $this->input->get('id');	
             if ($this->session->userdata('type') === 'client')
             {
-                $id = $this->session->userdata('userid');	
+                $id = $this->session->userdata('userid');
+                $query = $this->db->get_where('customers_users',array('id' => $id));
             }
-            $query = $this->db->get_where('customers_users',array('id' => $id));	
+            else 
+            { 
+                $query = $this->db->get_where('datos_clientes',array('id' => $id));
+            }            	
             $info['datos'] = $query->row_array();
             $cliente = $info['datos']['cliente'];
             $query->free_result();
