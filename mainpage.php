@@ -253,8 +253,7 @@
                       "<i class='icon-chevron-right icon-white'></i>"
                       ],
                     stopOnHover: true,
-                    items: 2,
-                    autoHeight : true
+                    singleItem: true                    
                 });
                   
                 var categoriesDivs = document.querySelectorAll("div.owl-carousel.category");
